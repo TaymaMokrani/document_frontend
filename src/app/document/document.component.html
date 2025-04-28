@@ -1,0 +1,25 @@
+<div class="container mt-4" *ngIf="document">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4>{{ document.titre }}</h4>
+    </div>
+    <div class="card-body">
+      <p><strong>Thème :</strong> {{ document.theme }}</p>
+      <p><strong>Résumé :</strong> {{ document.resume }}</p>
+      <p><strong>Mots Clés :</strong> 
+        <span class="badge bg-secondary me-1" *ngFor="let mot of document.motsCles">{{ mot }}</span>
+      </p>
+      <p><strong>Date de publication :</strong> {{ document.datePublication | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Type :</strong> {{ document.typeFichier }}</p>
+      <p><strong>Nom du fichier :</strong> {{ document.nomFichier }}</p>
+
+      <hr>
+
+      <h5>Auteur</h5>
+      <p><strong>Nom :</strong> {{ auteur?.prenom }} {{ auteur?.nom }}</p>
+      <p><strong>Email :</strong> {{ auteur?.email }}</p>
+      <p><strong>Grade :</strong> {{ auteur?.grade }}</p>
+      <p><strong>Spécialité :</strong> {{ auteur?.specialite }}</p>
+    </div>
+  </div>
+</div>

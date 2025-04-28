@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <div class="row mb-3">
+      <div class="col-12">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Search by title or theme..." 
+          [(ngModel)]="searchText" 
+          (input)="searchDocuments()"
+        >
+      </div>
+    </div>
+  
+    <div *ngFor="let document of filteredDocuments" class="card mb-2 shadow-sm">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">{{ document.titre }}</h5>
+        <div>
+            <a [routerLink]="['/document', document.id]" class="btn btn-primary btn-sm me-2">Details</a>
+          <button class="btn btn-success btn-sm" (click)="downloadDocument(document.id)">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

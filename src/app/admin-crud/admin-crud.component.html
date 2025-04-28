@@ -1,0 +1,74 @@
+<div class="container my-4">
+  <h2>Gestion des Documents</h2>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      {{ isEditing ? 'Modifier Document' : 'Ajouter Document' }}
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="saveDocument()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="titre" [(ngModel)]="currentDocument.titre" name="titre" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="theme" class="form-label">Thème</label>
+            <input type="text" class="form-control" id="theme" [(ngModel)]="currentDocument.theme" name="theme" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="resume" class="form-label">Résumé</label>
+          <textarea class="form-control" id="resume" rows="3" [(ngModel)]="currentDocument.resume" name="resume"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="keywords" class="form-label">Mots-clés</label>
+          <input type="text" class="form-control" id="keywords" [(ngModel)]="newMotCle" name="keywords" placeholder="Entrez les mots-clés et appuyez sur Entrée" (keydown.enter)="addMotCle()">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Mots-clés sélectionnés</label>
+          <ul class="list-group">
+            <li *ngFor="let motCle of currentDocument.motsCles" class="list-group-item">
+              {{ motCle }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="row mx-1">
+          <input type="file" class="form-control mb-3" (change)="onLoadFile($event)" id="file"  required>
+        </div>
+
+        <div class="row mx-1">
+          <select name="" id="" class="form-select mb-3"  required>
+            <option value="">appuyez</option>
+            <option value="">23aezaze</option>
+            <option value="">5aze648az9</option>
+            <option value="">az8e9a51e6</option>
+            <option value="">az5e64</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-success me-2" >Enregistrer</button>
+          <button type="button" *ngIf="isEditing" class="btn btn-secondary" (click)="cancelEdit()">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Documents existants
+    </div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let document of documents" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ document.titre }}
+        <div>
+          <button class="btn btn-primary btn-sm me-2" (click)="editDocument(document)">Modifier</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteDocument(document.id)">Supprimer</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
